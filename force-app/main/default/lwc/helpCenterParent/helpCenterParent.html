@@ -1,0 +1,88 @@
+<template>
+
+    <div class="grid-container">
+        <div class="grid-item">
+            <img src={generalInfo} alt="General Information"></br>
+            <strong>General Information</strong>
+        </div>
+        <div class="grid-item">
+            <img src={projectServices} alt="Product & Services"></br>
+            <strong>Product & Services</strong>
+        </div>
+        <div class="grid-item">
+            <img src={processInformation} alt="Process Information"></br>
+            <strong>Process Information</strong>
+        </div>
+        <div class="grid-item">
+            <img src={cancellationInfo} alt="Cancellation Information "></br>
+            <strong>Cancellation Information</strong>
+        </div>
+        <div class="grid-item">
+            <img src={claimsProcess} alt="Claims Process"></br>
+            <strong>Claims Process</strong>
+        </div>
+    </div>
+    <div>
+        <div class="slds-grid border" style="background:rgb(245, 245, 245)">
+            <div class="nav-container slds-col">
+                <nav class="slds-nav-vertical" aria-label="Sub page">
+                    <div class="slds-nav-vertical__section">
+                        <template for:each={navigationItems} for:item='item'>
+                            <li class="slds-nav-vertical__item " key={item.label}>
+                                <a class="slds-nav-vertical__action">
+                                    <span style="margin-right: 8px;">{item.label}</span>
+                                    <lightning-icon data-id={item.label} icon-name={item.iconName} size="xx-small"
+                                        onclick={handleIconClick} ></lightning-icon>
+                                </a>
+                            </li>
+
+                            <template if:true={item.isExpanded}>
+                                <div key={item.Id} class="expanded slds-col slds-size_3-of-4">
+
+                                    <template for:each={item.topics} for:item="topic">
+                                        <div key={topic.Id} onclick={handleTopicClick} data-id={topic.Id} style="background-color:rgb(235, 234, 234); padding:2px; border-radius:5%; margin-bottom:8px">
+                                            <strong>{topic.Name}</strong>
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+
+                        </template>
+                    </div>
+                </nav>
+                <div>
+                    <div>
+                        <div if:true={showFAQ} class="faq">
+                        <lightning-card style="background-color:rgb(235, 235, 235); border-radius:20%;" title={categoryName}></lightning-card>
+                        <template for:each={selectedTopicFAQs} for:item="faq">
+                            <div class="faqStyle" key={faq.Id} style="padding-left: 50px;margin-bottom: 15px; display: flex;flex-direction: column;align-items: stretch;">
+
+                                <!-- <lightning-card  > -->
+                                    <div style="padding: 5px; background-color:rgb(235, 235, 235);border-radius:5%;">
+                                        <strong> {faq.Question__c}</strong>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <lightning-icon icon-name={faq.iconName} onclick={handleChevronIcon} size="x-small"
+                                            data-id={faq.Id} data-ise={faq.isExpand}></lightning-icon>
+                                    </div>
+                                <!-- </lightning-card> -->
+
+                                <!-- <lightning-card> -->
+                                    <div style="font-family:cursive;padding: 5px;border-radius:5%">
+                                        <template if:true={faq.isExpand}>
+                                          -> {faq.Answer__c}
+                                        </template>
+                                    </div>
+                                <!-- </lightning-card> -->
+
+
+                            </div>
+                        </template>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</template>

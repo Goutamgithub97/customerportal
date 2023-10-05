@@ -1,0 +1,26 @@
+.container{
+    height: 85px;
+    width: 193px;
+    position: relative;
+    display: grid;
+    align-content: center;
+}
+
+.progressBar{
+    display: contents;
+    /* background-color: rgba(12, 53, 85, 0.836) !important; */
+
+
+} 
+
+.number{
+font-weight: 600;
+
+ font-family:cursive;
+ 
+}
+/* .THIS .slds-progress-bar__value{
+    background: green !important;
+} */
+ 
+  

@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Find a Service Delearship">
+        <div class="slds-size_11-of-12" style="padding: 10px;">
+<lightning-input type="search" placeholder="Enter Your Zip Code" value={searchQuery} onchange={handleChange}></lightning-input >
+        </div>
+
+<div class="slds-grid border" style="padding: 10px; background-color=aqua;">
+ <div class="slds-col slds-size_5-of-12" style="padding-left: 20px;background-color:rgb(237, 241, 241)">
+<strong ><span class="title-font-size">Selling Delearship Address</span></strong></br>
+
+ <strong>Name:</strong><span class="custom-font-size"> {name}</span> </br>
+ <strong>City:</strong><span class="custom-font-size"> {city}</span> </br>
+ <strong>Zip Code:</strong> <span class="custom-font-size"> {zip}</span> </br>
+ <strong>State:</strong> <span class="custom-font-size"> {state}</span> 
+ </div>
+
+ <div class="slds-col slds-size_7-of-12 " style="padding-right: 90px ;">
+    <lightning-map
+    map-markers={mapMarker}
+    zoom-level={zoomLevel}
+    >
+   </lightning-map>
+ </div>
+</div>
+    </lightning-card>
+ </template>

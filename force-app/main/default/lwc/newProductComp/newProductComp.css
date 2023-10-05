@@ -1,0 +1,28 @@
+th span {
+    font-weight:bolder;
+    border: none;
+  }
+  
+ .table-position{
+    position: relative;
+    top: -25px; 
+    border: none;
+ }
+ .contract-print-container {
+   position:relative;
+   border: none;
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+ }
+
+ .contract-container{
+   border: none;
+ }
+ .grid-container {
+  display: flex;
+  justify-content: space-between; 
+}
+.grid-item {
+  flex: 1 ; 
+}

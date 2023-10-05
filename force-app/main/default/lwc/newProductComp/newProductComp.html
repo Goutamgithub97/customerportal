@@ -1,0 +1,114 @@
+<template>
+    <div class="table-position">
+        <table class="slds-table slds-table_cell-buffer " >
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th>
+                       <span> Product Name </span>
+                    </th>
+                    <th>
+                        <span>  Term </span>
+                    </th>
+                    <th>
+                        <span> Mileage </span>
+                    </th>
+                    <th>
+                        <span> Status </span>
+                    </th>
+                    <th>
+                        <span> Expiration Date </span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template iterator:it={records}>
+                    <tr  key={it.value.objProduct.Id} style="cursor: pointer;">                        
+                        <td data-label="Product Name" >       
+                                           
+                                <strong>{it.value.objProduct.Name}</strong>
+                                <p>{it.value.objProduct.My_Product_Id__c}</p>
+                            
+                        </td>
+                        <td data-label="Term" >
+                                          
+                                <!-- {it.value.objProduct.Term__c} -->
+                                <template if:true={it.value.objProduct.Contracts__r}>
+                                    <template for:each={it.value.objProduct.Contracts__r} for:item="contract">
+                                      <div key={contract.Id}>
+                                        {(contract.Available_Years__c)} 
+                                      </div>
+                                    </template>
+                                  </template>
+                            
+                        </td>
+                        <td data-label="Mileage" >
+                                            
+                                <!-- {it.value.objProduct.Mileage__c} -->
+                                <template if:true={it.value.objProduct.Contracts__r}>
+                                    <template for:each={it.value.objProduct.Contracts__r} for:item="contract">
+                                      <div key={contract.Id}>
+                                        {contract.Available_Mileage__c} 
+                                      </div>
+                                    </template>
+                                  </template>
+                        </td>
+                        <td data-label="Status" style="color: rgb(97, 186, 8);">        
+                                {it.value.objProduct.Status__c}
+                        </td>
+                        <td data-label="Expiration Date">
+                                <!-- {it.value.objProduct.Expiration_Date__c} -->
+                                <template if:true={it.value.objProduct.Contracts__r}>
+                                    <template for:each={it.value.objProduct.Contracts__r} for:item="contract">
+                                      <div key={contract.Id}>
+                                        {contract.Expiration_Date__c}
+                                      </div>
+                                    </template>
+                                  </template>
+                        </td>    
+                        <td >
+                                <lightning-icon icon-name= {it.value.iconName} size="small" onclick={hideAndShow} data-record-id={it.index} ></lightning-icon>
+                        </td>  
+                    </tr>
+                    <template if:false={it.value.hideBool} key={it.value.objProduct.Id} style="padding: 5px;">
+                        <tr key={it.value.objProduct.Id}>
+                            <td colspan="5">
+                                <template if:true={it.value.contractBool}>    
+                                    <b key={it.value.objProduct.Id}></b>
+                                        <template iterator:it={it.value.objProduct.Contracts__r}>
+                                            <div style="padding:15px;" key={it.value.Id} class="contract-container">
+                                               
+                                                <!-- Create Grid -->
+                                                <div class="grid-container">
+                                                  <div class="grid-item">  
+                                                                           <c-circular-progress-bar remaining-date={it.value.Remaining_Date__c} purchased-date={it.value.Purchase_Date__c}  expiration-date={it.value.Expiration_Date__c}></c-circular-progress-bar>
+                                                                           <strong >Purchase Date</strong> : {it.value.Purchase_Date__c} <br/>
+                                                                           <strong >Expiration Date : {it.value.Expiration_Date__c} </strong><br/>
+                                                   </div>
+                                                   <div class="grid-item"> 
+                                                                          <c-horizontal-progress-bar remaining-mileage={it.value.Remaining_Mileage__c} starting-mileage={it.value.Starting_Expiration_Mileage__c} expiring-mileage={it.value.Expiration_Mileage__c} current-mileage={it.value.Current_Mileage__c} remaining-current-mileage={it.value.Remaining_Current_Mileage__c} ></c-horizontal-progress-bar>
+                                                                          <strong >Starting Mileage :</strong> {it.value.Starting_Expiration_Mileage__c} <br/>
+                                                                          <strong >Expiration Mileage : {it.value.Expiration_Mileage__c} </strong><br/>
+                                                    </div>
+                                                    <div class="grid-item">  
+                                                            <strong >Deductible :</strong> {it.value.Deductible__c} <br/>
+                                                            <strong >Options :</strong> {it.value.Options__c} 
+                                                    </div>
+                                                </div>           
+                                                            <!-- calling contract preview child button -->
+                                                            <!-- <div class="contract-print-container">
+                                                                <c-contract-print-comp contract-id={it.value.Id}></c-contract-print-comp>
+                                                            </div>  -->
+                                            </div>
+                                        </template>
+                                </template>
+                                <template if:false={it.value.contractBool}>    
+                                    <b key={it.value.objProduct.Id}>No Contracts found for this Product!!!</b>
+                                </template>
+                            </td>
+                        </tr>
+                    </template>                    
+                </template>
+            </tbody>
+        </table>
+    </div>
+</template>

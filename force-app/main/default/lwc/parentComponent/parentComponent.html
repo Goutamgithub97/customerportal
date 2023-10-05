@@ -1,0 +1,56 @@
+<template>
+<lightning-card title={title} >
+   <div class="slds-grid border">
+     <div class="slds-col slds-size_3-of-12">
+        <lightning-vertical-navigation class="slds-p-around_medium " style="list-style: none;">
+        <lightning-vertical-navigation-item name ="myProduct" label= "My Products" onclick={handleClick}> </lightning-vertical-navigation-item>
+        <lightning-vertical-navigation-item name ="myService" label= "My Services" onclick={handleClick}> </lightning-vertical-navigation-item>
+        <lightning-vertical-navigation-item name ="myClaim" label= "My Claims" onclick={handleClick}> </lightning-vertical-navigation-item>
+        <lightning-vertical-navigation-item name ="findAService" label= "Find a Service" onclick={handleClick}> </lightning-vertical-navigation-item>
+        <lightning-vertical-navigation-item name ="helpCenter" label= "Help Center" onclick={handleClick}> </lightning-vertical-navigation-item>
+        </lightning-vertical-navigation>
+     </div>
+
+        <div class="slds-col slds-size_9-of-12 border" style="padding-bottom:20px; padding-top:5px" if:true={showProductTable}>
+            <c-new-product-comp></c-new-product-comp>
+        </div>
+
+        <div class="slds-col slds-size_9-of-12 border" style="padding-bottom:20px; padding-top:5px" if:true={showMyService}>
+            Service
+        </div>
+
+        <div class="slds-col slds-size_9-of-12 border" style="padding-bottom:20px; padding-top:5px" if:true={showMyClaims}>
+            Claims
+        </div>
+
+        <div class="slds-col slds-size_9-of-12 border" style="padding-bottom:20px; padding-top:5px" if:true={showHelpCenter}>
+            <c-help-center-parent></c-help-center-parent>
+
+        </div>
+
+        <div class="slds-col slds-size_9-of-12 border" style="padding-bottom:20px; padding-top:5px" if:true={showGoogleMap}> 
+            <c-google-map-service></c-google-map-service>
+        </div>
+    </div>
+</lightning-card>
+
+</template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

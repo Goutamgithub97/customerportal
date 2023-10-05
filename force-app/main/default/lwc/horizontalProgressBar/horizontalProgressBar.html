@@ -1,0 +1,19 @@
+<template>
+    <div class="container">
+      <div class="number">{availableMileage} Miles</div>
+       <!-- <lightning-progress-bar class="progressBar slds-progress-bar__value" value={per} size="large" variant="circular" ></lightning-progress-bar>  -->
+
+      
+        <div class="slds-progress-bar slds-progress-bar_large slds-progress-bar_circular" aria-valuemin="0" aria-valuemax={remainingMileage} aria-valuenow={per} role="progressbar">
+          <span class="slds-progress-bar__value " style="background:rgb(36, 27, 84)">
+            <!-- <span class="slds-assistive-text">Progress: {per} %</span> -->
+          </span>
+        </div>
+        
+      <div style="font-size:smaller;">
+        {startingMileage} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; {expiringMileage}
+      </div>
+      
+    </div>
+  </template>
+  
